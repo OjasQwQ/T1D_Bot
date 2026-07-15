@@ -42,7 +42,7 @@ class T1DEducationChatbot:
         self.pattern_list: List[Dict] = []
         self.knowledge_base: List[str] = []
         self.llm_backend = os.getenv("LLM_BACKEND", "gemini").lower()
-        self.llm_model = os.getenv("LLM_MODEL", "gemini-2.5-flash")
+        self.llm_model = os.getenv("LLM_MODEL", "gemini-flash-latest")
         self.llm_client = None
         self.nemotron_pipeline = None
 
@@ -208,20 +208,34 @@ Assistant:"""
             return self.get_response(intent)
 
         if self.llm_backend == "gemini" and self.llm_client is not None:
+            prompt = self.build_llm_prompt(user_input)
             try:
-                prompt = self.build_llm_prompt(user_input)
                 response = self.llm_client.models.generate_content(
                     model=self.llm_model,
                     contents=prompt,
                 )
-                text = getattr(response, "text", None)
+                text = getattr(response, "text", None) or getattr(response, "output_text", None)
                 if text:
                     return text.strip()
             except Exception as exc:  # pragma: no cover - runtime guard
-                print(f"[WARN] Gemini fallback failed: {exc}")
+                print(f"[WARN] Gemini generate_content failed: {exc}")
+
+            try:
+                response = self.llm_client.interactions.create(
+                    model=self.llm_model,
+                    input=prompt,
+                )
+                text = getattr(response, "output_text", None) or getattr(response, "text", None)
+                if text:
+                    return text.strip()
+            except Exception as exc:  # pragma: no cover - runtime guard
+                print(f"[WARN] Gemini interactions fallback failed: {exc}")
 
         if intent is not None:
             return self.get_response(intent)
+
+        if self.llm_backend == "gemini" and self.llm_client is None:
+            return "I can answer many Type 1 Diabetes questions directly from the built-in knowledge base. Please ask again or try a simpler phrasing like 'what is T1D' or 'symptoms of T1D'."
 
         if self.llm_backend == "nemotron-3b":
             try:
