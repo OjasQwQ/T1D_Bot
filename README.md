@@ -87,3 +87,27 @@ Feel free to submit issues or pull requests to improve the chatbot's knowledge b
 ## License
 
 This project is open source and available for educational and awareness purposes.
+
+## Dependencies & Libraries
+
+This project is intentionally lightweight and uses the Python standard library for core functionality. A few optional third-party libraries enable extended features (LLM fallback, tests, and local model inference):
+
+- **Python Standard Library**: `difflib`, `json`, `os`, `random`, `re`, `string`, and `typing` are used for intent matching, normalization, I/O, and basic program flow. No installation is required for these.
+- **google-genai** (optional): Official Gemini (Google) client used when `LLM_BACKEND=gemini` and `GEMINI_API_KEY` is provided. Enables `models.generate_content` and `interactions.create` calls for LLM fallback answers. Install with `pip install google-genai` and set `GEMINI_API_KEY` in `.env`.
+- **transformers** (optional): Used only if you enable the `nemotron-3b` backend (local or remote inference) to run the `nvidia/Nemotron-3B-Instruct` pipeline as a fallback. Install with `pip install transformers` and follow model-specific instructions for runtime (may require `torch` or other acceleration libraries).
+- **torch / accelerate** (optional): Backend runtime for `transformers` models. Install per PyTorch platform instructions (GPU/CPU specific). Example: `pip install torch` or see https://pytorch.org for correct wheel.
+- **pytest** (development): Used to run unit tests in `tests/`. Install with `pip install pytest` and run `python -m pytest -q`. A lightweight test runner is also provided at `tests/run_intent_tests.py` so you can verify tests without installing `pytest`.
+
+Installation examples (optional dependencies):
+
+```bash
+# Install Gemini client and testing tools
+pip install google-genai pytest
+
+# Optional: install transformers + torch for Nemotron fallback (may require GPU or specific wheels)
+pip install transformers torch
+```
+
+Notes:
+- The LLM fallback features are optional — the bot works offline using the `intents.json` knowledge base and the built-in matching logic.
+- Model availability and API access depend on your account and plan for cloud LLMs; programmatic model discovery or switching may be necessary if a model ID is unavailable.
