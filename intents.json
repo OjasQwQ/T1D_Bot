@@ -1,0 +1,668 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "HAII",
+        "Heyo",
+        "Hey",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "What's up",
+        "Howdy",
+        "Hi there",
+        "Hello there",
+        "Hey there",
+        "Greetings"
+      ],
+      "responses": [
+        "Hello! I'm Dia. I'm here to help educate you about Type 1 Diabetes (T1D). How can I assist you today?",
+        "Hi there! I'm your T1D education assistant. What would you like to learn about Type 1 Diabetes?",
+        "Hey! I specialize in providing information about Type 1 Diabetes. What questions do you have?",
+        "Greetings! I'm here to spread awareness about T1D. What would you like to know?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye",
+        "I'm leaving",
+        "Have a good day",
+        "Thanks and goodbye",
+        "Catch you later",
+        "Talk to you soon",
+        "Peace out"
+      ],
+      "responses": [
+        "Goodbye! Remember, spreading awareness about T1D saves lives. Have a great day!",
+        "See you later! Keep learning about Type 1 Diabetes to help yourself and others.",
+        "Bye! Thanks for taking the time to learn about T1D today.",
+        "Have a wonderful day! Remember, knowledge about T1D empowers our community."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "Thanks a lot",
+        "Thank you so much",
+        "Thanks for the info",
+        "Appreciate it",
+        "Much appreciated",
+        "Thanks for your help"
+      ],
+      "responses": [
+        "You're welcome! Spreading T1D awareness is important to me.",
+        "Happy to help! Education is key in managing and supporting those with T1D.",
+        "Anytime! The more we know about T1D, the better we can support those affected.",
+        "You're very welcome! Keep spreading awareness about Type 1 Diabetes."
+      ]
+    },
+    {
+      "tag": "t1d_definition",
+      "patterns": [
+        "What is T1D",
+        "What is Type 1 Diabetes",
+        "Define Type 1 Diabetes",
+        "Explain T1D",
+        "What does T1D stand for",
+        "Type 1 Diabetes meaning",
+        "What is juvenile diabetes",
+        "T1D explanation",
+        "Define Type 1 Diabetes Mellitus",
+        "What is insulin dependent diabetes"
+      ],
+      "responses": [
+        "Type 1 Diabetes (T1D) is an autoimmune condition where the body's immune system mistakenly attacks and destroys the insulin-producing beta cells in the pancreas. This results in little to no insulin production, requiring lifelong insulin therapy.",
+        "T1D, formerly called juvenile diabetes, is a chronic autoimmune disease where the pancreas produces little or no insulin. Unlike Type 2 Diabetes, it's not caused by lifestyle factors and typically develops in children and young adults, though it can occur at any age.",
+        "Type 1 Diabetes is an autoimmune disorder where the immune system destroys pancreatic beta cells that produce insulin. Without insulin, glucose cannot enter cells properly, leading to high blood sugar levels that require external insulin management."
+      ]
+    },
+    {
+      "tag": "t1d_vs_t2d",
+      "patterns": [
+        "Difference between T1D and T2D",
+        "Type 1 vs Type 2 Diabetes",
+        "T1D versus T2D",
+        "What's the difference between Type 1 and Type 2",
+        "How is T1D different from T2D",
+        "Compare Type 1 and Type 2 Diabetes",
+        "T1D vs T2 diabetes",
+        "Distinguish T1D from T2D"
+      ],
+      "responses": [
+        "Key differences: Type 1 Diabetes is an autoimmune condition where the body attacks insulin-producing cells, requiring lifelong insulin. Type 2 Diabetes involves insulin resistance where the body doesn't use insulin properly, often related to lifestyle factors and may be managed with diet, exercise, and sometimes medication. T1D typically appears in childhood/adolescence while T2D is more common in adults (though increasing in youth).",
+        "T1D: Autoimmune destruction of beta cells, absolute insulin deficiency, requires insulin from diagnosis. T2D: Insulin resistance and relative insulin deficiency, often associated with obesity and lifestyle, may be managed initially with lifestyle changes and oral medications. T1D is not preventable; T2D often has preventable components.",
+        "Unlike T2D which can sometimes be prevented or delayed with lifestyle changes, T1D cannot be prevented and is not caused by diet or lifestyle. T1D requires immediate insulin therapy, while T2D may be managed through various approaches depending on severity."
+      ]
+    },
+    {
+      "tag": "symptoms",
+      "patterns": [
+        "Symptoms of T1D",
+        "Signs of Type 1 Diabetes",
+        "What are the symptoms of T1D",
+        "T1D symptoms",
+        "Early signs of Type 1 Diabetes",
+        "Warning signs of T1D",
+        "How do you know if you have T1D",
+        "T1D warning signs",
+        "Symptoms of juvenile diabetes",
+        "What are the early symptoms of T1D"
+      ],
+      "responses": [
+        "Common T1D symptoms include: frequent urination, excessive thirst, unexplained weight loss, extreme hunger, fatigue, blurred vision, irritability, and sometimes yeast infections. These symptoms can develop quickly, often over weeks.",
+        "The classic signs of T1D are often remembered as the '4 Ts': Toilet (frequent urination), Thirsty (excessive thirst), Tired (unexplained fatigue), and Thinner (unexplained weight loss). Other symptoms may include increased appetite, blurred vision, and slow-healing cuts.",
+        "T1D symptoms often appear suddenly and can be severe. Look for: increased thirst and urination, unexplained weight loss despite increased appetite, fatigue, blurred vision, and fruity-smelling breath (which could indicate ketoacidosis - a medical emergency)."
+      ]
+    },
+    {
+      "tag": "diagnosis",
+      "patterns": [
+        "How is T1D diagnosed",
+        "T1D diagnosis",
+        "How do doctors diagnose Type 1 Diabetes",
+        "Tests for T1D",
+        "Diagnosing Type 1 Diabetes",
+        "What tests confirm T1D",
+        "How do you know if you have T1D",
+        "T1D diagnostic criteria",
+        "Blood tests for T1D",
+        "Diagnosis of juvenile diabetes"
+      ],
+      "responses": [
+        "T1D is diagnosed through blood tests measuring glucose levels. Common tests include: Fasting Plasma Glucose (FPG) test (≥126 mg/dL indicates diabetes), Oral Glucose Tolerance Test (OGTT) (≥200 mg/dL after 2 hours), Hemoglobin A1C test (≥6.5%), and Random Plasma Glucose test (≥200 mg/dL with symptoms). Autoantibody tests can help distinguish T1D from T2D.",
+        "Diagnosis typically involves: 1) Symptom assessment, 2) Blood glucose testing (fasting, random, or OGTT), 3) A1C test for average blood sugar over 2-3 months, 4) Autoantibody testing to confirm autoimmune nature (checking for GAD, IA-2, ZnT8 antibodies), and 5) C-peptide test to measure insulin production.",
+        "Healthcare providers diagnose T1D using blood glucose tests plus clinical evaluation. Key diagnostic markers include: blood glucose ≥200 mg/dL with symptoms, fasting glucose ≥126 mg/dL, or A1C ≥6.5%. Additional tests like autoantibody panels help differentiate T1D from other diabetes types."
+      ]
+    },
+    {
+      "tag": "treatment",
+      "patterns": [
+        "How is T1D treated",
+        "T1D treatment",
+        "Type 1 Diabetes management",
+        "How do you treat T1D",
+        "T1D therapy",
+        "Managing Type 1 Diabetes",
+        "Treatment for juvenile diabetes",
+        "How is T1D managed",
+        "T1D care",
+        "What is the treatment for T1D"
+      ],
+      "responses": [
+        "T1D treatment requires lifelong insulin therapy since the body produces little to no insulin. Management includes: multiple daily injections or insulin pump therapy, frequent blood glucose monitoring, carbohydrate counting, regular exercise, and careful attention to diet. The goal is maintaining blood sugar in target range to prevent complications.",
+        "Current T1D treatment focuses on replacing the insulin the body can't produce. This is done through: insulin injections (multiple daily), insulin pumps (continuous subcutaneous insulin infusion), or emerging technologies like closed-loop systems. Essential components also include blood glucose monitoring, carbohydrate counting, exercise management, and regular healthcare team visits.",
+        "While there's no cure for T1D yet, effective management allows people to live healthy lives. Treatment involves: insulin replacement therapy, blood glucose monitoring (fingersticks or CGM), carbohydrate counting, exercise planning, and regular check-ups with endocrinologists, diabetes educators, and dietitians."
+      ]
+    },
+    {
+      "tag": "complications",
+      "patterns": [
+        "Complications of T1D",
+        "Long term effects of T1D",
+        "What happens if T1D is not managed",
+        "T1D complications",
+        "Risks of poorly controlled T1D",
+        "Diabetes complications",
+        "What are the dangers of T1D",
+        "T1D health risks",
+        "Effects of high blood sugar in T1D",
+        "T1D long term health"
+      ],
+      "responses": [
+        "Long-term complications of poorly managed T1D can affect multiple organs: cardiovascular disease (heart attack, stroke), kidney disease (nephropathy), nerve damage (neuropathy), eye damage (retinopathy leading to blindness), foot problems, and increased infection risk. Good blood sugar control significantly reduces these risks.",
+        "Complications from sustained high blood sugar include: microvascular complications (damage to small blood vessels affecting eyes, kidneys, nerves) and macrovascular complications (damage to larger blood vessels increasing heart attack/stroke risk). Other risks include dental problems, skin conditions, and increased susceptibility to infections.",
+        "The good news is that with proper management, many complications can be prevented or delayed. Key to reducing complications is maintaining target blood sugar levels, regular screening for complications, managing blood pressure and cholesterol, and avoiding smoking."
+      ]
+    },
+    {
+      "tag": "hypoglycemia",
+      "patterns": [
+        "Low blood sugar T1D",
+        "Hypoglycemia",
+        "What is low blood sugar in T1D",
+        "Treating low blood sugar",
+        "Hypo symptoms",
+        "How to treat hypoglycemia",
+        "Low blood sugar treatment",
+        "What to do when blood sugar is low",
+        "Hypoglycemia symptoms T1D",
+        "Severe low blood sugar"
+      ],
+      "responses": [
+        "Hypoglycemia (low blood sugar) occurs when blood glucose drops below 70 mg/dL. Symptoms include: shakiness, sweating, confusion, irritability, hunger, pale skin, and in severe cases, seizures or loss of consciousness. Treatment follows the '15-15 rule': consume 15 grams of fast-acting carbs, wait 15 minutes, recheck blood sugar, and repeat if needed.",
+        "For mild to moderate hypoglycemia: eat 15g of fast-acting carbohydrates (glucose tablets, juice, regular soda, candy), wait 15 minutes, recheck blood sugar. If still low, repeat. For severe hypoglycemia where person can't eat safely, glucagon injection is needed. Always educate family/friends on emergency procedures.",
+        "Prevent hypoglycemia by: monitoring blood sugar regularly, adjusting insulin for exercise/activity, eating regular meals, carrying fast-acting carbs, and being aware of alcohol's effects. Never skip meals after taking insulin. Teach close contacts how to recognize and treat severe lows."
+      ]
+    },
+    {
+      "tag": "hyperglycemia",
+      "patterns": [
+        "High blood sugar T1D",
+        "Hyperglycemia",
+        "What is high blood sugar in T1D",
+        "Treating high blood sugar",
+        "Hyperglycemia symptoms",
+        "How to treat hyperglycemia",
+        "High blood sugar treatment",
+        "What to do when blood sugar is high",
+        "Hyperglycemia symptoms T1D",
+        "Dangers of high blood sugar"
+      ],
+      "responses": [
+        "Hyperglycemia (high blood sugar) in T1D typically means blood glucose above 180-200 mg/dL. Symptoms include: increased thirst, frequent urination, fatigue, blurred vision, and headaches. Chronic hyperglycemia leads to complications. Treatment involves checking for ketones, adjusting insulin as directed by healthcare team, and addressing underlying causes like illness or missed insulin.",
+        "For hyperglycemia: check blood sugar, check for ketones if above 240 mg/dL, consider correction insulin dose as prescribed, drink water to prevent dehydration, and identify potential causes (missed insulin, illness, stress, etc.). If ketones are present with high blood sugar, contact healthcare provider immediately as this could indicate ketoacidosis risk.",
+        "Persistent hyperglycemia requires reviewing your diabetes management plan with your healthcare team. Causes may include: insufficient insulin, incorrect insulin dosing, illness, stress, hormonal changes, or pump/site issues. Never ignore consistently high readings."
+      ]
+    },
+    {
+      "tag": "ketoacidosis",
+      "patterns": [
+        "DKA",
+        "Diabetic ketoacidosis",
+        "What is DKA",
+        "Ketoacidosis symptoms",
+        "T1D ketoacidosis",
+        "Diabetic coma",
+        "How to prevent DKA",
+        "DKA treatment",
+        "What causes ketoacidosis",
+        "Ketoacidosis warning signs"
+      ],
+      "responses": [
+        "Diabetic Ketoacidosis (DKA) is a serious complication of T1D where the body produces high levels of blood acids called ketones. It develops when there's not enough insulin to break down glucose for energy, so the body breaks down fat instead. Symptoms include: fruity-smelling breath, nausea/vomiting, abdominal pain, confusion, rapid breathing, and extreme fatigue. DKA is a medical emergency requiring immediate hospital treatment.",
+        "DKA warning signs: high blood sugar (>240 mg/dL), presence of ketones in blood/urine, excessive thirst, frequent urination, nausea/vomiting, abdominal pain, fruity-smelling breath, confusion, and difficulty breathing. DKA can develop quickly and requires immediate medical attention - call 911 or go to emergency room.",
+        "Prevent DKA by: never missing insulin doses, checking for ketones when blood sugar is high or during illness, having sick day plan with your healthcare team, and seeking help early if vomiting or unable to keep fluids down. Remember: DKA is preventable with proper insulin management."
+      ]
+    },
+    {
+      "tag": "myths",
+      "patterns": [
+        "Myths about T1D",
+        "Misconceptions about Type 1 Diabetes",
+        "Common T1D myths",
+        "What people get wrong about T1D",
+        "T1D misconceptions",
+        "Debunking T1D myths",
+        "False beliefs about T1D",
+        "What's not true about T1D",
+        "T1D stereotypes",
+        "Incorrect information about T1D"
+      ],
+      "responses": [
+        "Common T1D myths: 1) 'T1D is caused by eating too much sugar' - FALSE: T1D is autoimmune, not caused by diet. 2) 'Only children get T1D' - FALSE: Can develop at any age. 3) 'People with T1D can't eat sweets' - FALSE: Can eat anything with proper insulin management. 4) 'T1D is contagious' - FALSE: Not infectious. 5) 'You can outgrow T1D' - FALSE: Lifelong condition requiring insulin.",
+        "Myth-busting T1D: 1) 'T1D is the same as T2D' - FALSE: Different causes and treatments. 2) 'Insulin cures T1D' - FALSE: Insulin treats but doesn't cure. 3) 'If you're healthy/active you won't get T1D' - FALSE: T1D is autoimmune, not lifestyle-related. 4) 'People with T1D can't do sports' - FALSE: Many athletes have T1D with proper management. 5) 'T1D is rare' - FALSE: Affects ~1.6 million Americans.",
+        "More T1D myths debunked: 1) 'You can get T1D from vaccines' - FALSE: No scientific evidence supports this. 2) 'T1D only affects whites' - FALSE: Affects all ethnicities. 3) 'If no family history, you won't get T1D' - FALSE: Most people with T1D have no family history. 4) 'T1D is caused by obesity' - FALSE: Not related to weight. 5) 'Natural remedies can replace insulin' - FALSE: Insulin is essential and life-saving."
+      ]
+    },
+    {
+      "tag": "lifestyle",
+      "patterns": [
+        "Living with T1D",
+        "T1D lifestyle",
+        "How to live with Type 1 Diabetes",
+        "Daily life with T1D",
+        "Managing T1D daily",
+        "T1D and exercise",
+        "T1D and diet",
+        "Can you exercise with T1D",
+        "T1D and pregnancy",
+        "Traveling with T1D"
+      ],
+      "responses": [
+        "Living well with T1D involves: consistent insulin management, regular blood sugar monitoring, balanced nutrition, regular exercise, stress management, and ongoing education. Many people with T1D lead full, active lives including sports, travel, and careers. Key is planning ahead and working closely with your healthcare team.",
+        "Exercise is encouraged for people with T1D! It improves insulin sensitivity and overall health. Important considerations: check blood sugar before/during/after exercise, adjust insulin as needed, carry fast-acting carbs, and stay hydrated. Many professional athletes have T1D and compete at high levels.",
+        "Nutrition for T1D focuses on balanced meals, carbohydrate counting, and understanding how different foods affect blood sugar. There's no 'forbidden foods' list - people with T1D can eat anything with proper insulin dosing. Working with a diabetes-specialized dietitian can be very helpful."
+      ]
+    },
+    {
+      "tag": "emergency",
+      "patterns": [
+        "T1D emergency",
+        "What to do in T1D emergency",
+        "Diabetes emergency",
+        "When to go to hospital for T1D",
+        "T1D emergency signs",
+        "Severe hypoglycemia emergency",
+        "DKA emergency",
+        "T1D medical emergency",
+        "What is a T1D emergency",
+        "Emergency care for T1D"
+      ],
+      "responses": [
+        "T1D emergencies requiring immediate medical attention (call 911 or go to ER): 1) Severe hypoglycemia where person is unconscious, having seizures, or unable to swallow safely. 2) Suspected DKA with symptoms like vomiting, abdominal pain, fruity breath, confusion. 3) Very high blood sugar (>300 mg/dL) with ketones. 4) Any symptoms of stroke or heart attack. When in doubt, seek emergency care.",
+        "Emergency preparedness for T1D: Always carry diabetes supplies, wear medical ID, have emergency contact info, teach family/friends how to administer glucagon, know locations of nearest emergency rooms, and have sick day plan ready. For severe lows where person can't eat: administer glucagon if available and call 911.",
+        "Never hesitate to seek emergency care for T1D concerns. It's better to be safe. Signs needing emergency help: unconsciousness, seizures, inability to keep fluids down with high blood sugar, severe abdominal pain with high blood sugar, difficulty breathing, or any symptoms suggesting stroke/heart attack."
+      ]
+    },
+    {
+      "tag": "resources",
+      "patterns": [
+        "T1D resources",
+        "Where to learn more about T1D",
+        "T1D education resources",
+        "Type 1 Diabetes information",
+        "T1D support groups",
+        "T1D organizations",
+        "Where to find T1D help",
+        "T1D learning materials",
+        "T1D websites",
+        "T1D community"
+      ],
+      "responses": [
+        "Reputable T1D resources include: JDRF (jdrf.org), American Diabetes Association (diabetes.org), Beyond Type 1 (beyondtype1.org), Children with Diabetes (childrenwithdiabetes.com), and the T1D Exchange (t1dexchange.org). These offer education, support, research updates, and community connections.",
+        "For ongoing education and support: consider connecting with local T1D support groups, attending diabetes education classes, following reputable T1D organizations on social media, reading books by T1D experts, and consulting with your healthcare team about personalized resources. Online communities can provide valuable peer support.",
+        "Helpful T1D resources: 1) JDRF's T1D Resources Center, 2) ADA's Diabetes Forecast magazine, 3) Beyond Type 1's personal stories and guides, 4) Diabetes Daily forums, 5) TuDiabetes community, 6) Insulin Nation newsletter, and 7) Your diabetes healthcare team for personalized guidance."
+      ]
+    },
+    {
+      "tag": "research",
+      "patterns": [
+        "T1D research",
+        "Type 1 Diabetes research",
+        "Is there a cure for T1D",
+        "T1D cure research",
+        "Latest T1D treatments",
+        "T1D clinical trials",
+        "Artificial pancreas",
+        "T1D prevention research",
+        "Beta cell research",
+        "T1D stem cell research"
+      ],
+      "responses": [
+        "Current T1D research focuses on: 1) Disease prevention (identifying triggers, early intervention), 2) Beta cell replacement/regeneration (stem cells, encapsulation), 3) Immunotherapies to modify autoimmune response, 4) Better insulin delivery (smart insulin, improved pumps), 5) Artificial pancreas/closed-loop systems, and 6) Complication prevention/reversal. While no cure exists yet, research advances rapidly.",
+        "Promising research areas: 1) Teplizumab (FDA-approved to delay T1D onset in high-risk individuals), 2) Various immunotherapies in clinical trials, 3) Beta cell replacement approaches, 4) Advanced hybrid closed-loop systems, 5) Glucose-responsive 'smart' insulins, and 6) Research into environmental triggers. JDRF and other organizations fund much of this research.",
+        "Research participation opportunity: Consider joining clinical trials through TrialNet (studying family members of those with T1D) or other research registries. Advances in technology like CGM systems and automated insulin delivery have dramatically improved quality of life, and research continues toward prevention and cure."
+      ]
+    },
+    {
+      "tag": "t1d_causes",
+      "patterns": [
+        "What causes T1D",
+        "What causes Type 1 Diabetes",
+        "Is T1D genetic",
+        "Is Type 1 Diabetes genetic",
+        "Can T1D be prevented",
+        "Can Type 1 Diabetes be prevented",
+        "Is Type 1 Diabetes hereditary",
+        "Family history of T1D",
+        "Risk factors for Type 1 Diabetes",
+        "Who is at risk for T1D",
+        "What triggers Type 1 Diabetes",
+        "Can you prevent Type 1 Diabetes"
+      ],
+      "responses": [
+        "T1D is caused by an autoimmune reaction where the body's immune system mistakenly attacks and destroys the insulin-producing beta cells in the pancreas. While genetics play a role, environmental factors are also believed to trigger this autoimmune response in genetically susceptible individuals. It's not caused by diet or lifestyle choices.",
+        "The exact cause of T1D isn't fully understood, but it involves a combination of genetic predisposition and environmental triggers (possibly viruses or other environmental factors) that lead the immune system to attack pancreatic beta cells. Having certain genes increases risk, but most people with those genes don't develop T1D.",
+        "T1D is not preventable at this time. Unlike Type 2 Diabetes, which can often be prevented or delayed with lifestyle changes, T1D is an autoimmune condition that cannot be prevented through diet, exercise, or other lifestyle modifications. Research is ongoing to find ways to prevent or delay onset."
+      ]
+    },
+    {
+      "tag": "t1d_risk_factors",
+      "patterns": [
+        "Who gets T1D",
+        "Who is at risk for Type 1 Diabetes",
+        "Risk factors for T1D",
+        "Family history and T1D",
+        "Genetic risk for Type 1 Diabetes",
+        "What increases risk of T1D",
+        "Am I at risk for Type 1 Diabetes",
+        "Risk factors for juvenile diabetes",
+        "Ethnicity and T1D risk",
+        "Age and T1D risk"
+      ],
+      "responses": [
+        "Risk factors for T1D include: family history (having a parent or sibling with T1D increases risk), certain genetic markers, age (peaks in children 4-7 and 10-14 years old), and possibly certain viral exposures. However, about 85% of people diagnosed with T1D have no family history of the condition.",
+        "While T1D can occur at any age, there are two noticeable peaks in diagnosis: first in children aged 4-7 years, and second in children aged 10-14 years. Certain ethnic groups have higher risk, particularly those of Northern European descent. Having specific HLA gene complexes increases susceptibility.",
+        "Having a first-degree relative (parent or sibling) with T1D increases your risk to about 5-6%, compared to about 0.4% in the general population. However, most people who develop T1D do not have a family history, indicating that environmental factors play a significant role in triggering the autoimmune response."
+      ]
+    },
+    {
+      "tag": "early_symptoms_children",
+      "patterns": [
+        "Early signs of T1D in children",
+        "Symptoms of Type 1 Diabetes in kids",
+        "T1D symptoms in toddlers",
+        "Juvenile diabetes symptoms in children",
+        "What are early signs of diabetes in children",
+        "How to spot T1D in kids",
+        "Diabetes symptoms in young children",
+        "Signs of diabetes in toddlers",
+        "Childhood diabetes symptoms",
+        "Pediatric diabetes symptoms"
+      ],
+      "responses": [
+        "In children, early T1D symptoms often include: increased thirst and urination (may notice bedwetting in toilet-trained children), unexplained weight loss despite increased appetite, fatigue, irritability, and sometimes yeast infections (especially in girls). Parents may notice children drinking excessively or losing weight rapidly.",
+        "Young children with T1D may show: frequent urination or wet diapers, excessive thirst, unexplained weight loss, increased hunger, fatigue, blurred vision, and sometimes diaper rash that doesn't heal well. The symptoms can develop quickly over a few weeks.",
+        "Parents should watch for: sudden changes in behavior, excessive thirst and drinking, frequent urination (including nighttime waking), unexplained weight loss, increased appetite, fatigue, and fruity-smelling breath. If several symptoms appear together, consult a pediatrician immediately for blood sugar testing."
+      ]
+    },
+    {
+      "tag": "diagnostic_tests",
+      "patterns": [
+        "What tests diagnose T1D",
+        "Specific tests for Type 1 Diabetes",
+        "C-peptide test for T1D",
+        "Antibody tests for Type 1 Diabetes",
+        "GAD antibody test",
+        "IA-2 antibody test",
+        "ZnT8 antibody test",
+        "What is a C-peptide test",
+        "Autoantibody testing for diabetes",
+        "How do antibody tests work"
+      ],
+      "responses": [
+        "Key diagnostic tests for T1D include: blood glucose tests (fasting, random, or oral glucose tolerance test), HbA1c test, and autoantibody tests. The autoantibody tests (checking for GAD, IA-2, ZnT8, and insulin antibodies) help confirm the autoimmune nature of T1D and distinguish it from Type 2 Diabetes.",
+        "A C-peptide test measures how much insulin your body is producing. Low or undetectable C-peptide levels indicate little to no insulin production, which is characteristic of T1D. This test helps distinguish T1D from Type 2 Diabetes, where C-peptide levels are typically normal or high initially.",
+        "Autoantibody tests look for specific antibodies that attack pancreatic cells: GAD65 (glutamic acid decarboxylase), IA-2 (insulinoma-associated protein 2), ZnT8 (zinc transporter 8), and insulin antibodies. Presence of one or more of these antibodies supports a diagnosis of T1D rather than Type 2 Diabetes."
+      ]
+    },
+    {
+      "tag": "insulin_types",
+      "patterns": [
+        "Types of insulin for T1D",
+        "Different kinds of insulin",
+        "Rapid acting insulin",
+        "Long acting insulin",
+        "Short acting insulin",
+        "Intermediate acting insulin",
+        "Premixed insulin",
+        "What is basal insulin",
+        "What is bolus insulin",
+        "Insulin types and their peak times"
+      ],
+      "responses": [
+        "Insulin types are categorized by how quickly they work, when they peak, and how long they last: Rapid-acting (starts working in 15 minutes, peaks in 1-2 hours, lasts 2-4 hours), Short-acting (starts in 30 minutes, peaks in 2-3 hours, lasts 3-6 hours), Intermediate-acting (starts in 2-4 hours, peaks in 4-12 hours, lasts 12-18 hours), and Long-acting (starts working after several hours, provides steady coverage for 24 hours with minimal peak).",
+        "Basal insulin provides background insulin coverage throughout the day and night, mimicking the pancreas's steady release of insulin. Bolus insulin is taken at mealtimes to cover the carbohydrates in food and to correct high blood sugar. Most people with T1D need both basal and bolus insulin for optimal control.",
+        "Premixed insulin combines a specific ratio of basal and bolus insulin in one injection. While convenient, it offers less flexibility than separate basal and bolus dosing because you can't adjust the ratio based on your specific needs for basal coverage versus mealtime carbohydrates."
+      ]
+    },
+    {
+      "tag": "cgm_technology",
+      "patterns": [
+        "What is CGM",
+        "Continuous glucose monitor",
+        "How does CGM work",
+        "CGM vs fingerstick testing",
+        "Benefits of continuous glucose monitoring",
+        "CGM accuracy",
+        "Flash glucose monitoring",
+        "Real-time CGM",
+        "CGM alarms and alerts",
+        "Is CGM worth it"
+      ],
+      "responses": [
+        "A Continuous Glucose Monitor (CGM) measures glucose levels in the interstitial fluid throughout the day and night, providing real-time readings and trends every few minutes. It consists of a small sensor inserted under the skin, a transmitter, and a receiver or smartphone app that displays the data.",
+        "CGM provides valuable information beyond single point-in-time fingerstick checks: it shows glucose trends (whether sugar is rising or falling), rate of change, and patterns throughout the day. This helps users make more informed decisions about food, exercise, and insulin dosing.",
+        "Benefits of CGM include: reduced hypoglycemia risk through alerts, better understanding of how food and activity affect glucose, improved time in range, decreased need for frequent fingersticks, and valuable data for healthcare team consultations. Studies show CGM use improves A1C and quality of life for many people with T1D."
+      ]
+    },
+    {
+      "tag": "carb_counting",
+      "patterns": [
+        "What is carbohydrate counting",
+        "How to count carbs for T1D",
+        "Carb counting basics",
+        "Carbohydrate counting for diabetes",
+        "How many carbs in common foods",
+        "Reading nutrition labels for carbs",
+        "Carb counting tips",
+        "What is a carb ratio",
+        "How to calculate insulin for carbs",
+        "Net carbs vs total carbs"
+      ],
+      "responses": [
+        "Carbohydrate counting is a meal planning technique used by people with T1D to manage blood glucose levels. It involves calculating the total grams of carbohydrates in a meal or snack and matching that with the appropriate amount of insulin. Most people with T1D use an insulin-to-carb ratio (like 1 unit of insulin per 10 grams of carbs) to calculate their mealtime insulin dose.",
+        "To count carbs: read nutrition labels for total carbohydrates (not just sugars), estimate carbs in unlabeled foods using reference guides or apps, and weigh foods when precision is needed. Remember that fiber doesn't significantly impact blood sugar, so some people subtract fiber from total carbs to get 'net carbs', though this approach varies by individual.",
+        "Consistency is key in carb counting. Practice measuring portions, use measuring cups and food scales when learning, and keep a food log to track how different foods affect your blood sugar. Working with a diabetes-specialized dietitian can help you develop accurate carb counting skills tailored to your lifestyle."
+      ]
+    },
+    {
+      "tag": "pregnancy_planning",
+      "patterns": [
+        "Pregnancy with Type 1 Diabetes",
+        "T1D and pregnancy planning",
+        "Getting pregnant with T1D",
+        "Preconception care for T1D",
+        "A1C goals before pregnancy",
+        "Planning pregnancy with Type 1 Diabetes",
+        "Risks of pregnancy with T1D",
+        "How to prepare for pregnancy with T1D",
+        "T1D during pregnancy",
+        "Managing T1D before conception"
+      ],
+      "responses": [
+        "Planning pregnancy with T1D is crucial for reducing risks to both mother and baby. Key steps include: achieving target A1C levels (typically <6.5% or as advised by your healthcare team) before conception, reviewing medications for pregnancy safety, starting folic acid supplementation, and ensuring rubella immunity. Close monitoring begins even before conception.",
+        "Preconception care for T1D involves: optimizing blood sugar control (aiming for A1C <6.5% if possible), comprehensive medical review (eyes, kidneys, nerves, heart), reviewing all medications for pregnancy safety, and ensuring vaccinations are up to date. The goal is to reduce risks of birth defects and complications.",
+        "Women with T1D can have healthy pregnancies with careful planning and management. Risks that increase with suboptimal blood sugar control include: birth defects, miscarriage, preterm birth, preeclampsia, and macrosomia (large baby). However, with excellent glucose control before and during pregnancy, many women with T1D have healthy pregnancies and babies."
+      ]
+    },
+    {
+      "tag": "pregnancy_management",
+      "patterns": [
+        "Managing T1D during pregnancy",
+        "T1D pregnancy management",
+        "Blood sugar goals during pregnancy",
+        "Insulin needs during pregnancy",
+        "Pregnancy and hypoglycemia",
+        "T1D and pregnancy complications",
+        "Monitoring T1D in pregnancy",
+        "Gestational diabetes vs T1D in pregnancy",
+        "Delivery planning with T1D",
+        "Postpartum T1D management"
+      ],
+      "responses": [
+        "During pregnancy, insulin needs change dramatically: they often decrease in the first trimester, increase significantly in the second and third trimesters (sometimes doubling or tripling pre-pregnancy doses), and then drop rapidly after delivery. Frequent blood sugar monitoring and close collaboration with your healthcare team are essential.",
+        "Blood sugar targets during pregnancy are typically tighter than usual: fasting <95 mg/dL, 1-hour post-meal <140 mg/dL, and 2-hour post-meal <120 mg/dL. These tight targets help reduce risks of birth defects and complications. Continuous glucose monitoring is often recommended during pregnancy for better visibility.",
+        "After delivery, insulin needs drop dramatically and immediately - sometimes to less than pre-pregnancy levels. Close monitoring is essential during this period to prevent hypoglycemia. Breastfeeding can affect blood sugar and insulin needs, so continued close monitoring and communication with your healthcare team is important postpartum."
+      ]
+    },
+    {
+      "tag": "travel_preparation",
+      "patterns": [
+        "Traveling with T1D",
+        "T1D and travel",
+        "How to travel with diabetes supplies",
+        "Packing diabetes supplies for travel",
+        "TSA guidelines for diabetes",
+        "Flying with insulin and supplies",
+        "International travel with T1D",
+        "Travel insurance for T1D",
+        "Diabetes travel checklist",
+        "Emergency planning for travel"
+      ],
+      "responses": [
+        "When traveling with T1D: pack twice as much supplies as you think you'll need, keep supplies in your carry-on luggage (never checked baggage), bring prescriptions and doctor's letters, carry snacks for hypoglycemia treatment, and consider time zone changes for medication timing. Always wear medical identification.",
+        "TSA allows diabetes-related supplies, equipment, and medications through security checkpoints once properly screened. Insulin, pumps, CGMs, lancets, glucose tablets, and liquids (including juice and gels for hypoglycemia treatment) are permitted. Notify TSA officers that you have diabetes and are carrying supplies.",
+        "For international travel: research healthcare availability at your destination, consider travel insurance that covers pre-existing conditions, bring prescriptions in the generic name (brand names may vary), learn key phrases in the local language related to diabetes and emergencies, and carry supplies in original packaging with pharmacy labels."
+      ]
+    },
+    {
+      "tag": "school_plans",
+      "patterns": [
+        "504 plan for T1D",
+        "IEP for Type 1 Diabetes",
+        "School diabetes plan",
+        "How to get a 504 plan for T1D",
+        "School accommodations for diabetes",
+        "Diabetes medical management plan",
+        "School nurse training for T1D",
+        "Field trip planning with T1D",
+        "Exam accommodations for T1D",
+        "What should be in a diabetes school plan"
+      ],
+      "responses": [
+        "A 504 plan is a legal document that outlines accommodations for students with disabilities (including T1D) to ensure equal access to education. It can include: permission to check blood sugar and treat hypoglycemia/hyperglycemia anytime, access to snacks and water, bathroom access, flexibility for missed class time due to diabetes care, and training for school staff.",
+        "An Individualized Education Program (IEP) is for students who need specialized instruction due to their disability impacting learning. While less common for T1D alone, it might be appropriate if diabetes significantly affects educational performance. A 504 plan is typically sufficient for most students with T1D who need accommodations but not specialized instruction.",
+        "Key elements of a diabetes school plan should include: emergency contacts, hypoglycemia and hyperglycemia treatment procedures, snack and meal times, blood sugar checking schedule, insulin administration details, supplies storage location, staff training requirements, and field trip/sports participation guidelines. The plan should be developed collaboratively with parents, healthcare team, and school staff."
+      ]
+    },
+    {
+      "tag": "exercise_guidelines",
+      "patterns": [
+        "Exercise and T1D",
+        "Can you exercise with Type 1 Diabetes",
+        "How to exercise safely with T1D",
+        "Best exercises for T1D",
+        "Exercise and blood sugar",
+        "Preventing low blood sugar during exercise",
+        "Exercise timing with insulin",
+        "Sports and T1D",
+        "Gym workouts with T1D",
+        "Exercise precautions for T1D"
+      ],
+      "responses": [
+        "Exercise is highly beneficial for people with T1D - it improves insulin sensitivity, cardiovascular health, and overall well-being. However, it can affect blood sugar levels, sometimes causing hypoglycemia during or after activity. Key strategies include: checking blood sugar before/during/after exercise, adjusting insulin as needed, and having fast-acting carbohydrates available.",
+        "Different types of exercise affect blood sugar differently: aerobic exercise (like running, swimming, cycling) often lowers blood sugar during activity, while anaerobic exercise (like weightlifting or sprinting) can sometimes raise blood sugar initially. Mixed activities may have variable effects. Monitoring patterns helps you learn your personal responses.",
+        "To exercise safely with T1D: check blood sugar before starting (if <100 mg/dL, consider a small snack; if >250 mg/dL, check for ketones), consider reducing basal insulin or taking less bolus insulin before exercise if appropriate, carry fast-acting carbs, hydrate well, and monitor during and after exercise as blood sugar can drop for several hours post-activity."
+      ]
+    },
+    {
+      "tag": "diabetes_distress",
+      "patterns": [
+        "Diabetes distress",
+        "What is diabetes distress",
+        "T1D burnout",
+        "Diabetes burnout symptoms",
+        "Emotional impact of T1D",
+        "Mental health and T1D",
+        "Feeling overwhelmed by diabetes",
+        "Diabetes and depression",
+        "Anxiety about T1D management",
+        "Coping with diabetes stress"
+      ],
+      "responses": [
+        "Diabetes distress refers to the negative emotions and burdens specifically related to living with and managing diabetes. It's distinct from clinical depression but can coexist. Symptoms include: feeling frustrated, overwhelmed, or burned out by diabetes management demands, worrying constantly about complications, and feeling guilty when blood sugar goals aren't met.",
+        "Diabetes burnout is a state of exhaustion where you feel overwhelmed by the constant demands of diabetes management and may neglect your care temporarily. It's common and normal to experience periods of burnout. Signs include: skipping blood sugar checks, ignoring high or low readings, feeling resentful about diabetes demands, and avoiding diabetes-related tasks.",
+        "Coping strategies for diabetes distress include: acknowledging your feelings without judgment, setting realistic expectations, celebrating small victories, seeking support from others who understand (support groups, online communities), taking diabetes 'vacations' with proper planning, and talking to your healthcare team or a mental health professional when needed."
+      ]
+    },
+    {
+      "tag": "school_staff_training",
+      "patterns": [
+        "Training school staff about T1D",
+        "Educating teachers about diabetes",
+        "School nurse diabetes training",
+        "Coach education for T1D students",
+        "How to train school staff on T1D",
+        "Diabetes education for school personnel",
+        "What teachers should know about T1D",
+        "School staff diabetes awareness",
+        "Training for T1D at school",
+        "Educating school personnel about diabetes"
+      ],
+      "responses": [
+        "School staff training should cover: recognizing and treating hypoglycemia and hyperglycemia, understanding the student's individual diabetes management plan, knowing when to call for emergency help, understanding that students need to eat snacks and check blood sugar during class, and recognizing that diabetes management needs can vary day to day.",
+        "Teachers and coaches should know: students with T1D need immediate access to blood sugar checking supplies and fast-acting carbohydrates, may need to use the bathroom frequently, may need to eat snacks during class to prevent lows, and should never be punished for diabetes-related needs. They should also understand that high blood sugar can affect concentration and behavior.",
+        "Effective training includes: hands-on practice with glucagon administration, reviewing the student's specific diabetes management plan, understanding legal obligations under disability rights laws, and creating clear communication channels between school, parents, and healthcare team. Annual refresher training is recommended."
+      ]
+    },
+    {
+      "tag": "workplace_rights",
+      "patterns": [
+        "T1D and employment rights",
+        "Americans with Disabilities Act and T1D",
+        "Can you be fired for having T1D",
+        "Workplace accommodations for diabetes",
+        "Disclosure of T1D at work",
+        "T1D discrimination in workplace",
+        "Reasonable accommodations for T1D",
+        "Job interview and T1D disclosure",
+        "Workplace diabetes rights",
+        "Employer responsibilities for T1D employees"
+      ],
+      "responses": [
+        "Under the Americans with Disabilities Act (ADA), T1D is considered a disability, which means employers with 15 or more employees cannot discriminate against you because of your diabetes. You have the right to reasonable accommodations unless they would cause undue hardship to the employer. Employers cannot ask about your diabetes before making a job offer.",
+        "Reasonable accommodations for T1D might include: breaks to check blood sugar or administer insulin, a private space for insulin injections or pump site changes, permission to keep snacks and diabetes supplies at your workstation, flexibility for medical appointments, and the ability to test blood sugar and treat hypoglycemia as needed.",
+        "Disclosure of T1D at work is a personal decision. You are not required to disclose your diabetes unless you need accommodations. If you do need accommodations, you should disclose only what's necessary to request those specific accommodations. Many people choose to disclose to ensure safety in case of hypoglycemia at work."
+      ]
+    },
+    {
+      "tag": "current_trials",
+      "patterns": [
+        "Current T1D research trials",
+        "How to participate in T1D research",
+        "T1D clinical trials",
+        "Research studies for Type 1 Diabetes",
+        "TrialNet studies",
+        "How to find T1D research studies",
+        "Participating in diabetes research",
+        "Current studies on T1D prevention",
+        "T1D research opportunities",
+        "Where to find T1D clinical trials"
+      ],
+      "responses": [
+        "Current T1D research includes: prevention studies (like TrialNet testing medications to delay or prevent onset in high-risk individuals), new immunotherapies to modify the autoimmune response, beta cell replacement approaches (stem cells, encapsulation devices), improved insulin formulations (faster-acting, longer-lasting, glucose-responsive), and advanced automated insulin delivery systems.",
+        "To find T1D research studies: visit ClinicalTrials.gov and search for 'type 1 diabetes', check TrialNet.org for prevention and natural history studies, look at JDRF's research portal, and ask your diabetes healthcare team about local studies. Many studies need both people with T1D and their family members for genetic and environmental research.",
+        "Participating in research can contribute to important advances while often providing access to cutting-edge treatments or monitoring. Studies vary in time commitment, procedures, and potential benefits/reimbursement. Always carefully review the informed consent document and ask questions before deciding to participate."
+      ]
+    }
+  ]
+}
