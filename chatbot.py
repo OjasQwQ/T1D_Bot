@@ -189,26 +189,53 @@ class T1DEducationChatbot:
         return "I'm not sure how to respond to that. Could you rephrase your question?"
 
     def build_llm_prompt(self, user_input: str) -> str:
-        """Create a prompt that uses the intents JSON as the knowledge base."""
+        """Create a prompt that uses the intents JSON as the knowledge base.
+
+        If `include_citations` is True, the prompt will instruct the LLM to include
+        numbered citations (title, authors, year, URL) when providing research
+        references or papers.
+        """
         knowledge_context = "\n\n".join(self.knowledge_base)
-        return f"""You are Dia, a helpful Type 1 Diabetes education assistant.
-Use ONLY the knowledge below when answering.
-
-{knowledge_context}
-
-If the question is unrelated to Type 1 Diabetes, politely say so and redirect back to T1D topics.
-Keep the answer concise and under 120 words.
-
-User: {user_input}
-Assistant:"""
+        # default prompt body
+        prompt = (
+            f"You are Dia, a helpful Type 1 Diabetes education assistant.\n"
+            f"Use ONLY the knowledge below when answering.\n\n"
+            f"{knowledge_context}\n\n"
+            f"If the question is unrelated to Type 1 Diabetes, politely say so and redirect back to T1D topics.\n"
+            f"Keep the answer concise and under 120 words.\n\n"
+            f"User: {user_input}\n"
+            f"Assistant:"
+        )
+        return prompt
 
     def generate_fallback_response(self, user_input: str, intent: Optional[Dict] = None) -> str:
         """Try Gemini first, then Nemotron if configured, and finally fall back to a knowledge-based reply."""
+        # Safety check: block disallowed or harmful requests early
+        violation = self._detect_disallowed_content(user_input)
+        if violation:
+            if violation == "self-harm":
+                # Provide crisis resources and immediate guidance
+                return (
+                    "If you are thinking about harming yourself, please seek immediate help. "
+                    "Contact your local emergency number right now. "
+                    "If you are in the United States, call or text 988 (Suicide & Crisis Lifeline). "
+                    "In the UK, call Samaritans at 116 123. In India, you can contact AASRA at +91 22 2754 6669 or iCall at +91 9152987821. "
+                    "For other countries, local emergency services or your national suicide prevention hotline can help. "
+                    "If you are able, tell someone you trust you are in danger."
+                )
+            return (
+                "I'm sorry, I can't assist with requests that are violent, sexual, or illegal. "
+                "If you're in danger, please contact local emergency services."
+            )
+
         if intent is not None:
             return self.get_response(intent)
 
         if self.llm_backend == "gemini" and self.llm_client is not None:
+            include_citations = self._is_research_request(user_input)
             prompt = self.build_llm_prompt(user_input)
+            if include_citations:
+                prompt += "\n\nIf the user requests research papers or sources, include numbered citations (title, authors, year, URL) and a one-line summary for each citation."
             try:
                 response = self.llm_client.models.generate_content(
                     model=self.llm_model,
@@ -289,6 +316,52 @@ Assistant:"""
                 return topic
 
         return ""
+
+    def _detect_disallowed_content(self, text: str) -> Optional[str]:
+        """Detect disallowed or harmful content categories in user input.
+
+        Returns the category string when a match is found, otherwise `None`.
+        """
+        normalized = self.normalize_text(text)
+
+        disallowed_patterns = {
+            "sexual": [r"\bsex\b", r"porn", r"sexual", r"sexually", r"\bincest\b"],
+            "self-harm": [r"suicid", r"kill myself", r"harm myself", r"cut myself", r"want to die"],
+            "violence": [r"how to kill", r"murder", r"assassin", r"bomb", r"explosive", r"shoot people", r"attack"],
+            "illegal": [r"how to make meth", r"how to make a bomb", r"illegal", r"hack into", r"\bhack\b", r"steal", r"forge"],
+        }
+
+        for category, patterns in disallowed_patterns.items():
+            for pattern in patterns:
+                try:
+                    if re.search(pattern, normalized):
+                        return category
+                except re.error:
+                    # ignore bad regex patterns
+                    continue
+
+        return None
+
+    def _is_research_request(self, text: str) -> bool:
+        """Return True if the user query appears to request research papers or citations."""
+        normalized = self.normalize_text(text)
+        research_terms = [
+            r"\bresearch\b",
+            r"\bpaper\b",
+            r"\bstudy\b",
+            r"\bjournal\b",
+            r"\bcite\b",
+            r"\breferences\b",
+            r"\bdoi\b",
+            r"pubmed",
+            r"arxiv",
+            r"systematic review",
+            r"meta-analysis",
+        ]
+        for term in research_terms:
+            if re.search(term, normalized):
+                return True
+        return False
 
     def chat(self):
         """Main chat loop."""
