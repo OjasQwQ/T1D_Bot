@@ -1,6 +1,6 @@
 # T1D Education Chatbot
 
-A rule-based chatbot designed to educate people about Type 1 Diabetes (T1D) and spread awareness. The chatbot uses natural language processing techniques to understand user queries and provide accurate, helpful information about T1D.
+A hybrid chatbot designed to educate people about Type 1 Diabetes (T1D) and spread awareness. The chatbot uses natural language processing techniques to understand user queries and provide accurate, helpful information about T1D.
 
 ## Features
 
