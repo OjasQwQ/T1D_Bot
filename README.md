@@ -1,6 +1,6 @@
 # T1D Education Chatbot
 
-A hybrid (rule based and learning based) chatbot designed to educate people about Type 1 Diabetes (T1D) and spread awareness. The chatbot uses NLP techniques to understand user queries and provide accurate, helpful information about T1D.
+A rule-based chatbot designed to educate people about Type 1 Diabetes (T1D) and spread awareness. It matches user queries against locally stored intents and responds from the built-in knowledge base.
 
 I made this chatbot for a youth led NGO website which I am a part of. The NGO **DiAware** is working towards spreading awareness about Diabetes, especially T1D.
 
@@ -17,7 +17,7 @@ I made this chatbot for a youth led NGO website which I am a part of. The NGO **
 
 1. **Intent Classification**: The chatbot analyzes user input to determine the intent using similarity matching from the intents.json file which also acts as constraints for the bot.
 2. **Response Selection**: Provides appropriate responses from the matched intent
-3. **Fallback Handling**: Uses google genai to respnd to queries when confidence level is low against preset intents.
+3. **Fallback Handling**: Uses local keyword matching and guidance when confidence in an intent match is low. The chatbot does not use AI models, external model services, or API keys.
 
 ## File Structure
 
@@ -89,26 +89,15 @@ Feel free to submit issues or pull requests to improve the chatbot's knowledge b
 
 This project is open source and available for educational and awareness purposes.
 
-## Dependencies & Libraries
+## Dependencies
 
-This project is intentionally lightweight and uses the Python standard library for core functionality. A few optional third-party libraries enable extended features (LLM fallback, tests, and local model inference):
+The chatbot runtime uses only the Python standard library. It does not load AI models, make external model API calls, or require API keys.
 
-- **Python Standard Library**: `difflib`, `json`, `os`, `random`, `re`, `string`, and `typing` are used for intent matching, normalization, I/O, and basic program flow. No installation is required for these.
-- **google-genai** (optional): Official Gemini (Google) client used when `LLM_BACKEND=gemini` and `GEMINI_API_KEY` is provided. Enables `models.generate_content` and `interactions.create` calls for LLM fallback answers. Install with `pip install google-genai` and set `GEMINI_API_KEY` in `.env`.
-- **transformers** (optional): Used only if you enable the `nemotron-3b` backend (local or remote inference) to run the `nvidia/Nemotron-3B-Instruct` pipeline as a fallback. Install with `pip install transformers` and follow model-specific instructions for runtime (may require `torch` or other acceleration libraries).
-- **torch / accelerate** (optional): Backend runtime for `transformers` models. Install per PyTorch platform instructions (GPU/CPU specific). Example: `pip install torch` or see https://pytorch.org for correct wheel.
-- **pytest** (development): Used to run unit tests in `tests/`. Install with `pip install pytest` and run `python -m pytest -q`. A lightweight test runner is also provided at `tests/run_intent_tests.py` so you can verify tests without installing `pytest`.
-
-Installation examples (optional dependencies):
+For development tests, install pytest and run:
 
 ```bash
-# Install Gemini client and testing tools
-pip install google-genai pytest
-
-# Optional: install transformers + torch for Nemotron fallback (may require GPU or specific wheels)
-pip install transformers torch
+pip install pytest
+python -m pytest -q
 ```
 
-Notes:
-- The LLM fallback features are optional — the bot works offline using the `intents.json` knowledge base and the built-in matching logic.
-- Model availability and API access depend on your account and plan for cloud LLMs; programmatic model discovery or switching may be necessary if a model ID is unavailable.
+A lightweight test runner is also available at `tests/run_intent_tests.py` and requires no third-party packages.

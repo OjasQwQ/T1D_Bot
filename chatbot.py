@@ -7,79 +7,23 @@ import string
 from typing import Dict, List, Optional
 
 
-def load_environment_variables() -> None:
-    """Load values from a local .env file when present."""
-    env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
-    if not os.path.exists(env_path):
-        return
-
-    with open(env_path, "r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-
-            key, value = line.split("=", 1)
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if key and key not in os.environ:
-                os.environ[key] = value
-
-
-load_environment_variables()
-
-try:
-    from google import genai as google_genai
-except ImportError:  
-    google_genai = None
-
-
 class T1DEducationChatbot:
     def __init__(self, intents_file: str):
-        """Initialize the chatbot using sentence embeddings and an optional LLM fallback."""
+        """Initialize the chatbot with the built-in intent knowledge base."""
         self.intents = self.load_intents(intents_file)
         self.context = {}
         self.pattern_list: List[Dict] = []
-        self.knowledge_base: List[str] = []
-        self.llm_backend = os.getenv("LLM_BACKEND", "gemini").lower()
-        self.llm_model = os.getenv("LLM_MODEL", "gemini-flash-latest")
-        self.llm_client = None
-        self.nemotron_pipeline = None
-
         self._index_intents()
-        self._init_llm_client()
 
     def _index_intents(self) -> None:
-        """Build a normalized pattern list and the knowledge-base strings."""
+        """Build a normalized list of patterns for intent matching."""
         for intent in self.intents:
-            tag = intent.get("tag", "unknown")
             patterns = intent.get("patterns", [])
-            responses = intent.get("responses", [])
-            self.knowledge_base.append(
-                f"Topic: {tag}\n"
-                f"Questions: {', '.join(patterns)}\n"
-                f"Answers: {' '.join(responses)}"
-            )
             for pattern in patterns:
                 self.pattern_list.append({
                     "intent": intent,
                     "pattern": self.normalize_text(pattern),
                 })
-
-    def _init_llm_client(self) -> None:
-        """Initialize Gemini if the API key is available."""
-        if self.llm_backend != "gemini" or google_genai is None:
-            return
-
-        api_key = os.getenv("GEMINI_API_KEY")
-        if not api_key:
-            return
-
-        try:
-            self.llm_client = google_genai.Client(api_key=api_key)
-        except Exception as exc:  # pragma: no cover - runtime guard
-            print(f"[WARN] Gemini client initialization failed: {exc}")
-            self.llm_client = None
 
     @staticmethod
     def load_intents(file_path: str) -> List[Dict]:
@@ -188,39 +132,11 @@ class T1DEducationChatbot:
             return random.choice(responses)
         return "I'm not sure how to respond to that. Could you rephrase your question?"
 
-    def build_llm_prompt(self, user_input: str, include_citations: bool = False) -> str:
-        """Create a prompt that uses the intents JSON as the knowledge base.
-
-        If `include_citations` is True, the prompt will instruct the LLM to include
-        numbered citations (title, authors, year, URL) when providing research
-        references or papers.
-        """
-        knowledge_context = "\n\n".join(self.knowledge_base)
-        # default prompt body
-        prompt = (
-            f"You are Dia, a helpful Type 1 Diabetes education assistant.\n"
-            f"Use ONLY the knowledge below when answering.\n\n"
-            f"{knowledge_context}\n\n"
-            f"If the question is unrelated to Type 1 Diabetes, politely say so and redirect back to T1D topics.\n"
-            f"Keep the answer concise and under 120 words.\n\n"
-        )
-        if include_citations:
-            prompt += (
-                "When providing information about research, studies, or medical topics, include:\n"
-                "- Numbered citations (e.g., [1], [2]) with title, authors, year, and URL if available\n"
-                "- One-line summary for each citation\n"
-                "- Prefer peer-reviewed sources and reputable organizations\n\n"
-            )
-        prompt += f"User: {user_input}\nAssistant:"
-        return prompt
-
     def generate_fallback_response(self, user_input: str, intent: Optional[Dict] = None) -> str:
-        """Try Gemini first, then Nemotron if configured, and finally fall back to a knowledge-based reply."""
-        # Safety check: block disallowed or harmful requests early
+        """Return a safe local fallback response for unmatched input."""
         violation = self._detect_disallowed_content(user_input)
         if violation:
             if violation == "self-harm":
-                # Provide crisis resources and immediate guidance
                 return (
                     "If you are thinking about harming yourself, please seek immediate help. "
                     "Contact your local emergency number right now. "
@@ -236,56 +152,6 @@ class T1DEducationChatbot:
 
         if intent is not None:
             return self.get_response(intent)
-
-        if self.llm_backend == "gemini" and self.llm_client is not None:
-            include_citations = self._is_research_request(user_input)
-            prompt = self.build_llm_prompt(user_input, include_citations=include_citations)
-            try:
-                response = self.llm_client.models.generate_content(
-                    model=self.llm_model,
-                    contents=prompt,
-                )
-                text = getattr(response, "text", None) or getattr(response, "output_text", None)
-                if text:
-                    return text.strip()
-            except Exception as exc:  # pragma: no cover - runtime guard
-                print(f"[WARN] Gemini generate_content failed: {exc}")
-
-            try:
-                response = self.llm_client.interactions.create(
-                    model=self.llm_model,
-                    input=prompt,
-                )
-                text = getattr(response, "output_text", None) or getattr(response, "text", None)
-                if text:
-                    return text.strip()
-            except Exception as exc:  # pragma: no cover - runtime guard
-                print(f"[WARN] Gemini interactions fallback failed: {exc}")
-
-        if intent is not None:
-            return self.get_response(intent)
-
-        if self.llm_backend == "gemini" and self.llm_client is None:
-            return "I can answer many Type 1 Diabetes questions directly from the built-in knowledge base. Please ask again or try a simpler phrasing like 'what is T1D' or 'symptoms of T1D'."
-
-        if self.llm_backend == "nemotron-3b":
-            try:
-                from transformers import pipeline
-
-                if self.nemotron_pipeline is None:
-                    self.nemotron_pipeline = pipeline(
-                        "text-generation",
-                        model="nvidia/Nemotron-3B-Instruct",
-                        trust_remote_code=True,
-                    )
-
-                prompt = self.build_llm_prompt(user_input)
-                output = self.nemotron_pipeline(prompt, max_new_tokens=180, do_sample=False)
-                generated = output[0]["generated_text"]
-                if generated:
-                    return generated.split("Assistant:", 1)[-1].strip()
-            except Exception as exc:  # pragma: no cover - runtime guard
-                print(f"[WARN] Nemotron fallback failed: {exc}")
 
         keyword_topic = self._infer_topic_from_text(user_input)
         if keyword_topic:
@@ -346,37 +212,6 @@ class T1DEducationChatbot:
 
         return None
 
-    def _is_research_request(self, text: str) -> bool:
-        """Return True if the user query appears to request research papers or citations."""
-        normalized = self.normalize_text(text)
-        research_terms = [
-            r"\bpaper\b",
-            r"\bpapers\b",
-            r"\bresearch\b",
-            r"\bstudy\b",
-            r"\bstudies\b",
-            r"\bjournal\b",
-            r"\bjournals\b",
-            r"\bcite\b",
-            r"\bcitation\b",
-            r"\breference\b",
-            r"\breferences\b",
-            r"\bdoi\b",
-            r"\burl\b",
-            r"\blink\b",
-            r"\blinks\b",
-            r"pubmed",
-            r"arxiv",
-            r"systematic review",
-            r"meta-analysis",
-            r"\bsource\b",
-            r"\bsources\b",
-        ]
-        for term in research_terms:
-            if re.search(term, normalized):
-                return True
-        return False
-
     def chat(self):
         """Main chat loop."""
         print("=" * 50)
@@ -398,8 +233,7 @@ class T1DEducationChatbot:
                     continue
 
                 intent, similarity = self.find_intent(user_input)
-                is_research = self._is_research_request(user_input)
-                if intent is not None and similarity >= 0.65 and not is_research:
+                if intent is not None and similarity >= 0.65:
                     response = self.get_response(intent)
                 else:
                     response = self.generate_fallback_response(user_input, intent)

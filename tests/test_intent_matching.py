@@ -39,3 +39,13 @@ def test_keyword_short_input_matches(bot):
     intent, score = bot.find_intent("symptoms")
     assert intent is not None
     assert score >= 0.55
+
+
+def test_unmatched_query_uses_local_fallback(bot):
+    reply = bot.generate_fallback_response("Tell me a joke")
+    assert reply.startswith("I can help with T1D topics")
+
+
+def test_topic_keyword_uses_local_fallback(bot):
+    reply = bot.generate_fallback_response("Can we discuss diet?")
+    assert reply.startswith("I can help with lifestyle.")
