@@ -1,28 +1,29 @@
 # T1D Education Chatbot
 
-A rule-based chatbot designed to educate people about Type 1 Diabetes (T1D) and spread awareness. The chatbot uses natural language processing techniques to understand user queries and provide accurate, helpful information about T1D.
+A hybrid (rule based and learning based) chatbot designed to educate people about Type 1 Diabetes (T1D) and spread awareness. The chatbot uses NLP techniques to understand user queries and provide accurate, helpful information about T1D.
 
-## Features
+I made this chatbot for a youth led NGO website which I am a part of. The NGO **DiAware** is working towards spreading awareness about Diabetes, especially T1D.
+
+## Features/Uses
 
 - **Educational Content**: Comprehensive information about T1D including definition, symptoms, treatment, complications, and more
 - **Myth Busting**: Addresses common misconceptions about Type 1 Diabetes
-- **Emergency Information**: Provides guidance on recognizing and responding to diabetes emergencies
+- **Emergency Info**: Provides guidance on recognizing and responding to diabetes emergencies
 - **Resource Direction**: Points users to reputable T1D organizations and resources
-- **Research Updates**: Information about current research and potential future treatments
+- **Research Updates**: Info about current research and potential future treatments
 - **Lifestyle Guidance**: Advice on living well with T1D including exercise, nutrition, and daily management
 
 ## How It Works
 
-1. **Intent Classification**: The chatbot analyzes user input to determine the intent (what the user wants to know)
-2. **Pattern Matching**: Uses preprocessed text and similarity scoring to match user queries to predefined intents
-3. **Response Selection**: Provides appropriate responses from the matched intent
-4. **Fallback Handling**: Offers helpful suggestions when confidence in match is low
+1. **Intent Classification**: The chatbot analyzes user input to determine the intent using similarity matching from the intents.json file which also acts as constraints for the bot.
+2. **Response Selection**: Provides appropriate responses from the matched intent
+3. **Fallback Handling**: Uses google genai to respnd to queries when confidence level is low against preset intents.
 
 ## File Structure
 
 - `intents.json`: Contains the knowledge base with intents, patterns, and responses
 - `chatbot.py`: Main chatbot implementation with NLP processing and conversation logic
-- `README.md`: This documentation file
+- `README.md`: This documentation file!
 
 ## Knowledge Base Structure (intents.json)
 

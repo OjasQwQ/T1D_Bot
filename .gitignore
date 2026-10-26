@@ -1,6 +1,23 @@
 # Environment files
 .env
+.env.*
 
-# Python cache
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache and bytecode
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+
+# Test and tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local logs and editor files
+*.log
+.DS_Store

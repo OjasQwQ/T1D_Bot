@@ -30,7 +30,7 @@ load_environment_variables()
 
 try:
     from google import genai as google_genai
-except ImportError:  # pragma: no cover - optional dependency guard
+except ImportError:  
     google_genai = None
 
 
