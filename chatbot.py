@@ -188,7 +188,7 @@ class T1DEducationChatbot:
             return random.choice(responses)
         return "I'm not sure how to respond to that. Could you rephrase your question?"
 
-    def build_llm_prompt(self, user_input: str) -> str:
+    def build_llm_prompt(self, user_input: str, include_citations: bool = False) -> str:
         """Create a prompt that uses the intents JSON as the knowledge base.
 
         If `include_citations` is True, the prompt will instruct the LLM to include
@@ -203,9 +203,15 @@ class T1DEducationChatbot:
             f"{knowledge_context}\n\n"
             f"If the question is unrelated to Type 1 Diabetes, politely say so and redirect back to T1D topics.\n"
             f"Keep the answer concise and under 120 words.\n\n"
-            f"User: {user_input}\n"
-            f"Assistant:"
         )
+        if include_citations:
+            prompt += (
+                "When providing information about research, studies, or medical topics, include:\n"
+                "- Numbered citations (e.g., [1], [2]) with title, authors, year, and URL if available\n"
+                "- One-line summary for each citation\n"
+                "- Prefer peer-reviewed sources and reputable organizations\n\n"
+            )
+        prompt += f"User: {user_input}\nAssistant:"
         return prompt
 
     def generate_fallback_response(self, user_input: str, intent: Optional[Dict] = None) -> str:
@@ -233,9 +239,7 @@ class T1DEducationChatbot:
 
         if self.llm_backend == "gemini" and self.llm_client is not None:
             include_citations = self._is_research_request(user_input)
-            prompt = self.build_llm_prompt(user_input)
-            if include_citations:
-                prompt += "\n\nIf the user requests research papers or sources, include numbered citations (title, authors, year, URL) and a one-line summary for each citation."
+            prompt = self.build_llm_prompt(user_input, include_citations=include_citations)
             try:
                 response = self.llm_client.models.generate_content(
                     model=self.llm_model,
@@ -328,7 +332,7 @@ class T1DEducationChatbot:
             "sexual": [r"\bsex\b", r"porn", r"sexual", r"sexually", r"\bincest\b"],
             "self-harm": [r"suicid", r"kill myself", r"harm myself", r"cut myself", r"want to die"],
             "violence": [r"how to kill", r"murder", r"assassin", r"bomb", r"explosive", r"shoot people", r"attack"],
-            "illegal": [r"how to make meth", r"how to make a bomb", r"illegal", r"hack into", r"\bhack\b", r"steal", r"forge"],
+            "illegal": [r"how to make meth", r"how to make a bomb", r"illegal", r"hack into", r"\bhack\b", r"steal", r"forge", r"\bmeth\b", r"cocaine", r"heroin", r"\bdrug\b dealer", r"sell drugs", r"buy cocaine", r"buy heroin", r"fentanyl"],
         }
 
         for category, patterns in disallowed_patterns.items():
@@ -346,17 +350,27 @@ class T1DEducationChatbot:
         """Return True if the user query appears to request research papers or citations."""
         normalized = self.normalize_text(text)
         research_terms = [
-            r"\bresearch\b",
             r"\bpaper\b",
+            r"\bpapers\b",
+            r"\bresearch\b",
             r"\bstudy\b",
+            r"\bstudies\b",
             r"\bjournal\b",
+            r"\bjournals\b",
             r"\bcite\b",
+            r"\bcitation\b",
+            r"\breference\b",
             r"\breferences\b",
             r"\bdoi\b",
+            r"\burl\b",
+            r"\blink\b",
+            r"\blinks\b",
             r"pubmed",
             r"arxiv",
             r"systematic review",
             r"meta-analysis",
+            r"\bsource\b",
+            r"\bsources\b",
         ]
         for term in research_terms:
             if re.search(term, normalized):
@@ -384,7 +398,8 @@ class T1DEducationChatbot:
                     continue
 
                 intent, similarity = self.find_intent(user_input)
-                if intent is not None and similarity >= 0.70:
+                is_research = self._is_research_request(user_input)
+                if intent is not None and similarity >= 0.65 and not is_research:
                     response = self.get_response(intent)
                 else:
                     response = self.generate_fallback_response(user_input, intent)
